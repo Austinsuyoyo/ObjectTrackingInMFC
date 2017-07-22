@@ -258,12 +258,16 @@ void CObjectTrackingDlg::OnBnClickedStart()
 				if(ObjectTracker.Tracking(SrcCap, roiRect))
 					cv::rectangle(DisplayFrame, ObjectTracker.matchLoc, 
 						cv::Point(ObjectTracker.matchLoc.x + roiTarget.cols, ObjectTracker.matchLoc.y + roiTarget.rows), cv::Scalar(0, 0, 255), 2, 8, 0);
+				t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+				putText(DisplayFrame, cv::format("FPS = %3.3f", 1 / t), cv::Point(5, 20), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 255), 2);
 			}
 			else if (roiTarget.data != NULL && Tracking_status == "CAMShift" ) {
 				ObjectTracker.SetMethodType(ObjectTracker.CAMShift);
 				ObjectTracker.Tracking(SrcCap, roiRect);
 				if(ObjectTracker.Tracking(SrcCap, roiRect))
 					cv::ellipse(DisplayFrame, ObjectTracker.trackBox, cv::Scalar(0, 0, 255), 3, cv::LINE_AA);
+				t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+				putText(DisplayFrame, cv::format("FPS = %3.3f", 1 / t), cv::Point(5, 20), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 255), 2);
 			}
 			else if (roiTarget.data != NULL && Tracking_status == "MeanShift") {
 				ObjectTracker.SetMethodType(ObjectTracker.MeanShift);
@@ -271,11 +275,10 @@ void CObjectTrackingDlg::OnBnClickedStart()
 				cv::rectangle(DisplayFrame, cv::Point(ObjectTracker.trackWindow.x, ObjectTracker.trackWindow.y),
 					cv::Point(ObjectTracker.trackWindow.x + ObjectTracker.trackWindow.width, ObjectTracker.trackWindow.y + ObjectTracker.trackWindow.height),
 					cv::Scalar(0, 0, 255), 3, CV_AA);
+				t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+				putText(DisplayFrame, cv::format("FPS = %3.3f", 1 / t), cv::Point(5, 20), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 255), 2);
 			}
 
-			t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
-
-			putText(DisplayFrame, cv::format("FPS = %3.3f", 1/t), cv::Point(5, 20), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 255),2);
 	
 			imshow("MAIN FRAME", DisplayFrame);
 
