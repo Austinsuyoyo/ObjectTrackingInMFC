@@ -36,9 +36,9 @@ public:
 	static void onMouse(int event, int x, int y, int flags, void* param);
 	afx_msg void OnBnClickedStart();
 	afx_msg void OnBnClickedPause();
-	afx_msg void OnSelchangeComboVtc();
-
 	afx_msg void OnCustomdrawSlider1(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnCustomdrawSlider2(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnCustomdrawSlider3(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnCbnSelendokComboVtc();
+
 };

@@ -19,6 +19,7 @@ CVisualTracker::~CVisualTracker()
 
 void CVisualTracker::SetMethodType(VT_MethodType Type)
 {
+	if(m_CurrType!= Type)m_bROIchanged = 0;
 	m_CurrType = Type;
 }
 
@@ -63,6 +64,7 @@ BOOL CVisualTracker::Tracking(cv::Mat & Frame, cv::Rect & TrackRect)
 			if (TrackingByCamShift(Frame, TrackRect))return 1;
 			else return 0;
 		}
+		return 0;
 	}
 	else
 		return 0;
@@ -145,14 +147,13 @@ BOOL CVisualTracker::TrackingByMeanShift(cv::Mat & Frame, cv::Rect & TrackRect)
 		ShowHist();
 	}
 
-	// Perform CAMShift
 	const float* phranges = m_hranges;
 	cv::calcBackProject(&m_hue, 1, 0, m_hist, m_backproj, &phranges);
 	m_backproj &= m_mask;
 	if (cv::meanShift(m_backproj, TrackRect,
-		cv::TermCriteria(cv::TermCriteria::EPS | cv::TermCriteria::COUNT, 10, 1))
-		)
+		cv::TermCriteria(cv::TermCriteria::EPS | cv::TermCriteria::COUNT, 10, 1)) == 0)
 		return 0;
+
 
 	if (TrackRect.area() <= 1)
 	{
@@ -160,6 +161,7 @@ BOOL CVisualTracker::TrackingByMeanShift(cv::Mat & Frame, cv::Rect & TrackRect)
 		TrackRect = cv::Rect(TrackRect.x - r, TrackRect.y - r,
 			TrackRect.x + r, TrackRect.y + r) &
 			cv::Rect(0, 0, cols, rows);
+		return 0;
 	}
 
 	if (0)//backprojMode
@@ -241,5 +243,16 @@ void CVisualTracker::PrepareForBackProject(cv::Rect & selection)
 	cv::calcHist(&roi, 1, 0, maskroi, m_hist, 1, &m_hsize, &phranges);
 	cv::normalize(m_hist, m_hist, 0, 255, cv::NORM_MINMAX);
 
+}
+
+void CVisualTracker::TrackerInit(std::string mode, cv::Mat & Frame, cv::Rect2d & roiRect2d)
+{
+	Tracker = cv::Tracker::create(mode);
+	Tracker->init(Frame, roiRect2d);
+}
+
+void CVisualTracker::TrackerUpdate(cv::Mat & Frame, cv::Rect2d & roiRect2d)
+{
+	Tracker->update(Frame, roiRect2d);
 }
 

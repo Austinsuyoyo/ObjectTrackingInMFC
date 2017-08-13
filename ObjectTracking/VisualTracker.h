@@ -8,6 +8,7 @@
 #pragma once
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/opencv.hpp>
+#include <opencv2/tracking.hpp>
 class CVisualTracker
 {
 public:
@@ -50,8 +51,9 @@ public:
 	cv::Point					matchLoc;// Austin add it
 	cv::RotatedRect				trackBox;// Austin add it
 	cv::Rect					trackWindow;// Austin add it
+	void						TrackerInit(std::string mode, cv::Mat &Frame, cv::Rect2d &roiRect2d);// Austin add it
+	void						TrackerUpdate(cv::Mat & Frame, cv::Rect2d & roiRect2d);
 private:
-	//TempMatchParam&				m_CurrTMMethod;
 	VT_MethodType				m_CurrType;
 	VT_Params					m_CurrParams;
 	cv::Mat*					m_pROI;
@@ -80,6 +82,7 @@ private:
 	void						ImgHueExtraction(cv::Mat &Frame);
 	void						PrepareForBackProject(cv::Rect &selection);
 
+
 	BOOL						m_bROIchanged;
 	cv::Mat 					m_hsv;
 	cv::Mat						m_hue;
@@ -91,5 +94,6 @@ private:
 	int							m_smin;
 	int							m_hsize;
 	float						m_hranges[2] = { 0,180 };
+	cv::Ptr<cv::Tracker>		Tracker;
 };
 
