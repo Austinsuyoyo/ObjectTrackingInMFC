@@ -19,8 +19,10 @@ CVisualTracker::~CVisualTracker()
 
 void CVisualTracker::SetMethodType(VT_MethodType Type)
 {
-	if(m_CurrType!= Type)m_bROIchanged = 0;
+	if (m_CurrType != Type)m_bROIchanged = 0;
 	m_CurrType = Type;
+
+	
 }
 
 void CVisualTracker::SetVT_Params(VT_MethodType Type, VT_Params Param)
@@ -245,9 +247,18 @@ void CVisualTracker::PrepareForBackProject(cv::Rect & selection)
 
 }
 
-void CVisualTracker::TrackerInit(std::string mode, cv::Mat & Frame, cv::Rect2d & roiRect2d)
+void CVisualTracker::TrackerInit(cv::Mat & Frame, cv::Rect2d & roiRect2d)
 {
-	Tracker = cv::Tracker::create(mode);
+	//MIL,	BOOSTING,	MEDIANFLOW,		TLD,	KCF,	GOTURN
+	switch (m_CurrType) {
+		case MIL:			Tracker = cv::TrackerMIL::create(); break;
+		case BOOSTING:		Tracker = cv::TrackerBoosting::create(); break;
+		case MEDIANFLOW:	Tracker = cv::TrackerMedianFlow::create(); break;
+		case TLD:			Tracker = cv::TrackerTLD::create(); break;
+		case KCF:			Tracker = cv::TrackerKCF::create(); break;
+		case GOTURN:		Tracker = cv::TrackerGOTURN::create(); break;
+	}
+
 	Tracker->init(Frame, roiRect2d);
 }
 

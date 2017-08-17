@@ -12,7 +12,7 @@
 class CVisualTracker
 {
 public:
-	enum VT_MethodType { TempMatch = 1, MeanShift, CAMShift };
+	enum VT_MethodType { TempMatch = 1, MeanShift, CAMShift,MIL,BOOSTING,MEDIANFLOW,TLD,KCF,GOTURN};
 	enum TempMatchParam {
 		TM_SQDIFF = CV_TM_SQDIFF,
 		TM_SQDIFF_NORMED, TM_CCORR, TM_CCORR_NORMED, TM_CCOEFF,
@@ -51,7 +51,7 @@ public:
 	cv::Point					matchLoc;// Austin add it
 	cv::RotatedRect				trackBox;// Austin add it
 	cv::Rect					trackWindow;// Austin add it
-	void						TrackerInit(std::string mode, cv::Mat &Frame, cv::Rect2d &roiRect2d);// Austin add it
+	void						TrackerInit(cv::Mat &Frame, cv::Rect2d &roiRect2d);// Austin add it
 	void						TrackerUpdate(cv::Mat & Frame, cv::Rect2d & roiRect2d);
 private:
 	VT_MethodType				m_CurrType;

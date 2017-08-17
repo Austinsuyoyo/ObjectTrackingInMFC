@@ -121,13 +121,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_WINDOWS;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(OPENCV_DIR)\include;F:\opencv3.2\build_contrib\install\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OPENCV_DIR)\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opencv_world320d.lib;opencv_tracking320d.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OPENCV_DIR)\x64\vc14\lib;F:\opencv3.2\build_contrib\install\x64\vc14\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_tracking330d.lib;opencv_imgproc330d.lib;opencv_core330d.lib;opencv_videoio330d.lib;opencv_highgui330d.lib;opencv_video330d.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OPENCV_DIR)\x64\vc14\lib</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -184,7 +184,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OPENCV_DIR)\x64\vc14\lib;F:\opencv3.2\build_contrib\install\x64\vc14\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_world320.lib;opencv_tracking320.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_tracking330.lib;opencv_imgproc330.lib;opencv_core330.lib;opencv_videoio330.lib;opencv_highgui330.lib;opencv_video330.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
