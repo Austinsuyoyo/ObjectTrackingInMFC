@@ -36,6 +36,9 @@
     <ClInclude Include="VisualTracker.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
+    <ClInclude Include="CamCapture.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ObjectTracking.cpp">
@@ -48,6 +51,9 @@
       <Filter>原始程式檔</Filter>
     </ClCompile>
     <ClCompile Include="VisualTracker.cpp">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
+    <ClCompile Include="CamCapture.cpp">
       <Filter>原始程式檔</Filter>
     </ClCompile>
   </ItemGroup>

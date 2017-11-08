@@ -201,6 +201,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CamCapture.h" />
     <ClInclude Include="ObjectTracking.h" />
     <ClInclude Include="ObjectTrackingDlg.h" />
     <ClInclude Include="Resource.h" />
@@ -209,6 +210,7 @@
     <ClInclude Include="VisualTracker.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CamCapture.cpp" />
     <ClCompile Include="ObjectTracking.cpp" />
     <ClCompile Include="ObjectTrackingDlg.cpp" />
     <ClCompile Include="stdafx.cpp">
