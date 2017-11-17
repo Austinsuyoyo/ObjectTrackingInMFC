@@ -12,7 +12,7 @@
 class CVisualTracker
 {
 public:
-	enum VT_MethodType { TempMatch = 1, MeanShift, CAMShift,MIL,BOOSTING,MEDIANFLOW,TLD,KCF,GOTURN};
+	enum VT_MethodType {None=0, TempMatch, MeanShift, CAMShift,MIL,BOOSTING,MEDIANFLOW,TLD,KCF,GOTURN};
 	enum TempMatchParam {
 		TM_SQDIFF = CV_TM_SQDIFF,
 		TM_SQDIFF_NORMED, TM_CCORR, TM_CCORR_NORMED, TM_CCOEFF,
