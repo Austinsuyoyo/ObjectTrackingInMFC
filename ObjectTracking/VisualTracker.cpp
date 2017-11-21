@@ -19,7 +19,7 @@ CVisualTracker::~CVisualTracker()
 
 void CVisualTracker::SetMethodType(VT_MethodType Type)
 {
-	if (m_CurrType != Type)m_bROIchanged = 0;
+	if (m_CurrType != Type)m_bROIchanged = false;
 	m_CurrType = Type;
 
 	
@@ -247,23 +247,22 @@ void CVisualTracker::PrepareForBackProject(cv::Rect & selection)
 
 }
 
-void CVisualTracker::TrackerInit(cv::Mat & Frame, cv::Rect2d & roiRect2d)
+void CVisualTracker::TrackerByOpencv(cv::Mat & Frame, cv::Rect2d & roiRect2d)
 {
-	//MIL,	BOOSTING,	MEDIANFLOW,		TLD,	KCF,	GOTURN
-	switch (m_CurrType) {
+	if (!m_bROIchanged) {
+		//MIL,	BOOSTING,	MEDIANFLOW,		TLD,	KCF,	GOTURN
+		switch (m_CurrType) {
 		case MIL:			Tracker = cv::TrackerMIL::create(); break;
 		case BOOSTING:		Tracker = cv::TrackerBoosting::create(); break;
 		case MEDIANFLOW:	Tracker = cv::TrackerMedianFlow::create(); break;
 		case TLD:			Tracker = cv::TrackerTLD::create(); break;
 		case KCF:			Tracker = cv::TrackerKCF::create(); break;
 		case GOTURN:		Tracker = cv::TrackerGOTURN::create(); break;
+		}
+
+		Tracker->init(Frame, roiRect2d);
+
+		m_bROIchanged = 1;
 	}
-
-	Tracker->init(Frame, roiRect2d);
-}
-
-void CVisualTracker::TrackerUpdate(cv::Mat & Frame, cv::Rect2d & roiRect2d)
-{
 	Tracker->update(Frame, roiRect2d);
 }
-

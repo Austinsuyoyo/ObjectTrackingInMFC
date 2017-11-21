@@ -51,8 +51,7 @@ public:
 	cv::Point					matchLoc;// Austin add it
 	cv::RotatedRect				trackBox;// Austin add it
 	cv::Rect					trackWindow;// Austin add it
-	void						TrackerInit(cv::Mat &Frame, cv::Rect2d &roiRect2d);// Austin add it
-	void						TrackerUpdate(cv::Mat & Frame, cv::Rect2d & roiRect2d);
+	void						TrackerByOpencv(cv::Mat &Frame, cv::Rect2d &roiRect2d);// Austin add it
 private:
 	VT_MethodType				m_CurrType;
 	VT_Params					m_CurrParams;

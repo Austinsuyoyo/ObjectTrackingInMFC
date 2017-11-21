@@ -369,12 +369,6 @@ void CCamCapture2::doGrabLoop()
 			// 刷白圖像
 			if (m_Image.empty())
 				cv::Mat m_Image(m_Image.size(), CV_8UC3, cv::Scalar(255, 255, 255));
-			else
-				if (!m_bTrackerInit && !m_TargetRect2d.empty() && (ObjectTracker.GetMethodType() > 3)) {
-					ObjectTracker.SetMethodType(ObjectTracker.GetMethodType());
-					ObjectTracker.TrackerInit(m_Image, m_TargetRect2d);
-					m_bTrackerInit = true;
-				}
 			// 滑鼠響應函式
 			cv::setMouseCallback("MAIN FRAME", onMouseCB2, NULL);
 			// 複製圖像
@@ -382,12 +376,12 @@ void CCamCapture2::doGrabLoop()
 			// 劃出選取範圍
 			onGrabLoop_DrawMouseSelect(m_ImageClone);
 
-			if (!m_ROI.empty() && (m_TargetRect.width != 0 || m_TargetRect.height != 0) && m_bTrackerInit && (ObjectTracker.GetMethodType() > 3)) //for MIL,BOOSTING,MEDIANFLOW,TLD,KCF,GOTURN
+			if (!m_ROI.empty() && !m_bTargetObj && (ObjectTracker.GetMethodType() > 3)) //for MIL,BOOSTING,MEDIANFLOW,TLD,KCF,GOTURN
 			{
-				ObjectTracker.TrackerUpdate(m_Image, m_TargetRect2d);
+				ObjectTracker.TrackerByOpencv(m_Image, m_TargetRect2d);
 				rectangle(m_ImageClone, m_TargetRect2d, cv::Scalar(0, 0, 255), 2, 1);;
 			}
-			if (!m_ROI.empty() && (ObjectTracker.GetMethodType() <= 3)) //for TemplateMatch,CAMShift,MeanShift
+			if (!m_ROI.empty() && !m_bTargetObj && (ObjectTracker.GetMethodType() <= 3)) //for TemplateMatch,CAMShift,MeanShift
 			{
 				if (ObjectTracker.Tracking(m_Image, m_TargetRect)) {
 					if(ObjectTracker.GetMethodType()==1)
@@ -536,11 +530,11 @@ void CCamCapture2::onGrabLoop_DrawROI(cv::Mat & frame)
 			cv::Mat temp(m_Image, m_TargetRect);
 			m_ROI = temp.clone();
 			cv::imshow("roiTarget", m_ROI);
+			ObjectTracker.SetROI(&m_ROI);
 		}
 	}
 	else {
 		if (m_ROI.data != NULL) cv::imshow("roiTarget", m_ROI);
-		ObjectTracker.SetROI(&m_ROI);
 	}
 }
 
