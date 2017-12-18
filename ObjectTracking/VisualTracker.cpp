@@ -157,7 +157,7 @@ BOOL CVisualTracker::TrackingByMeanShift(cv::Mat & Frame, cv::Rect & TrackRect)
 		return 0;
 
 
-	if (TrackRect.area() <= 1)
+	if (TrackRect.area() <= 1 || (trackBox.size.width != trackBox.size.width) || (trackBox.size.height != trackBox.size.height))
 	{
 		int cols = m_backproj.cols, rows = m_backproj.rows, r = (MIN(cols, rows) + 5) / 6;
 		TrackRect = cv::Rect(TrackRect.x - r, TrackRect.y - r,
