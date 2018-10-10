@@ -17,15 +17,18 @@ There are several ways to track the target in the program:
 - [CMAKE 3.13](https://cmake.org/download/)
 # Usage
 1. Download this repository
-2. Add Environment Path 
-`Name : OPENCV_DIR`
-`Value: "you own opencv library"`
+2. Add New Environment Variable  
+`Variable Name : OPENCV_DIR`  
+`Variable Value: "you own opencv library"`  
 >You should compile OpenCV library from source code, because **tracking** module is not in central OpenCV repository.[Make own OpenCV Library](https://github.com/Austinsuyoyo/ObjectTrackingInMFC/wiki/Make-own-OpenCV-with-CMAKE)
->
-![Path](https://raw.githubusercontent.com/Austinsuyoyo/ObjectTrackingInMFC/master/image/path.png)
 
-3. Need a camera
-4. Run
+![step11](https://raw.githubusercontent.com/Austinsuyoyo/ObjectTrackingInMFC/master/image/step11.png)
+
+3. Edit environment variable **Path**  
+`...;C:\opencv\build\x64\vc14\bin`   
+![step12](https://raw.githubusercontent.com/Austinsuyoyo/ObjectTrackingInMFC/master/image/step12.png)
+4. Need a camera
+5. Run
 
 # Demo
 
