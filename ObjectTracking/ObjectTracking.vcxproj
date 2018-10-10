@@ -126,7 +126,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opencv_tracking330d.lib;opencv_imgproc330d.lib;opencv_core330d.lib;opencv_videoio330d.lib;opencv_highgui330d.lib;opencv_video330d.lib</AdditionalDependencies>
+      <AdditionalDependencies>opencv_tracking343d.lib;opencv_imgproc343d.lib;opencv_core343d.lib;opencv_videoio343d.lib;opencv_highgui343d.lib;opencv_video343d.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OPENCV_DIR)\x64\vc14\lib</AdditionalLibraryDirectories>
     </Link>
     <Midl>
@@ -176,15 +176,15 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_WINDOWS;_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(OPENCV_DIR)\include;F:\opencv3.2\build_contrib\install\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OPENCV_DIR)\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OPENCV_DIR)\x64\vc14\lib;F:\opencv3.2\build_contrib\install\x64\vc14\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_tracking330.lib;opencv_imgproc330.lib;opencv_core330.lib;opencv_videoio330.lib;opencv_highgui330.lib;opencv_video330.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OPENCV_DIR)\x64\vc14\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_tracking343.lib;opencv_imgproc343.lib;opencv_core343.lib;opencv_videoio343.lib;opencv_highgui343.lib;opencv_video343.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
