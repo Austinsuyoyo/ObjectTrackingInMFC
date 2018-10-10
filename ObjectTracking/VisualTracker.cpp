@@ -257,7 +257,6 @@ void CVisualTracker::TrackerByOpencv(cv::Mat & Frame, cv::Rect2d & roiRect2d)
 		case MEDIANFLOW:	Tracker = cv::TrackerMedianFlow::create(); break;
 		case TLD:			Tracker = cv::TrackerTLD::create(); break;
 		case KCF:			Tracker = cv::TrackerKCF::create(); break;
-		case GOTURN:		Tracker = cv::TrackerGOTURN::create(); break;
 		}
 
 		Tracker->init(Frame, roiRect2d);

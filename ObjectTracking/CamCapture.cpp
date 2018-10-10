@@ -378,7 +378,7 @@ void CCamCapture2::doGrabLoop()
 			// 劃出選取範圍
 			onGrabLoop_DrawMouseSelect(m_ImageClone);
 			m_bTargetObj = m_bTargetObj;
-			if (!m_ROI.empty() && !m_bTargetObj && !m_TargetRect.empty() && (ObjectTracker.GetMethodType() > 3)) //for MIL,BOOSTING,MEDIANFLOW,TLD,KCF,GOTURN
+			if (!m_ROI.empty() && !m_bTargetObj && !m_TargetRect.empty() && (ObjectTracker.GetMethodType() > 3)) //for MIL,BOOSTING,MEDIANFLOW,TLD,KCF
 			{
 				ObjectTracker.TrackerByOpencv(m_Image, m_TargetRect2d);
 				rectangle(m_ImageClone, m_TargetRect2d, cv::Scalar(0, 0, 255), 2, 1);;
